@@ -40,6 +40,22 @@ app.get('/messages', async (req, res) => {
   }
 })
 
+app.get('/about', async (req, res) => {
+  try {
+    const text = 'I\'m Stan, a fourth year double majoring in Computer Science and Economics at NYU. I enjoy cooking/baking in my free time, and I also read a lot of science fiction.'
+    res.json({
+      text: text,
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve page',
+    })
+  }
+})
+
 // a route to handle fetching a single message by its id
 app.get('/messages/:messageId', async (req, res) => {
   // load all messages from database
